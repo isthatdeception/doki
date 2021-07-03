@@ -22,7 +22,7 @@ export function seedDatabase(firebase) {
     {
       userId: "2",
       username: "kato",
-      fullName: "kato megumi",
+      fullName: "Kato Megumi",
       emailAddress: "katomegumi@email.com",
       following: [],
       followers: ["CTLGRWHbmOZ0kQF6UykachkLXUm1"],
@@ -60,9 +60,9 @@ export function seedDatabase(firebase) {
       .collection("photos")
       .add({
         photoId: i,
-        userId: "2",
-        imageSrc: `/images/users/raphael/${i}.jpg`,
-        caption: "Saint George and the Dragon",
+        userId: "4",
+        imageSrc: `/images/users/asuna/${i}.jpg`,
+        caption: "This is so awesome",
         likes: [],
         comments: [
           {
