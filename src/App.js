@@ -9,9 +9,7 @@ import * as ROUTES from "./routes";
 const Login = lazy(() => import("./pages/login"));
 function App() {
   return (
-    <div className="App">
-      <header>doki</header>
-      <p>this is a dream app</p>
+    <div className="container flex mx-auto ">
       <Router>
         <Suspense fallback={<p>loading ...</p>}>
           <Switch>

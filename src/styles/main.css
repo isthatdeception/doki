@@ -5,7 +5,6 @@
 }
 
 body {
-  color: #dbe6fd;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -13,5 +12,4 @@ body {
 a,
 a:hover {
   text-decoration: none;
-  color: grey;
 }
