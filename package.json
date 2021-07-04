@@ -12,12 +12,17 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-loading-skeleton": "^2.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "tailwindcss": "^2.2.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "css:create": "postcss src/styles/tailwind.css -o src/styles/app.css",
+    "css:watch": "postcss src/styles/tailwind.css -o src/styles/app.css --watch",
+    "start": "sleep 5 && react-scripts start",
+    "dev": "run-p css:watch start",
+    "build": "run-s css:create react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -38,5 +43,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.3.1"
   }
 }

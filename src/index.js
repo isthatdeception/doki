@@ -6,7 +6,6 @@
  */
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -14,6 +13,8 @@ dotenv.config();
 // relative imports
 import { firebaseContext } from "./context/forFirebase";
 import { firebase, fieldValue } from "./lib/firebase";
+import App from "./App";
+import "./styles/app.css";
 
 ReactDOM.render(
   <React.StrictMode>
