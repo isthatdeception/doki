@@ -11,16 +11,16 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // relative imports
-import { firebaseContext } from "./context/forFirebase";
+import { FirebaseContext } from "./context/forFirebase";
 import { firebase, fieldValue } from "./lib/firebase";
 import App from "./App";
 import "./styles/app.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <firebaseContext.Provider value={{ firebase, fieldValue }}>
+    <FirebaseContext.Provider value={{ firebase, fieldValue }}>
       <App />
-    </firebaseContext.Provider>
+    </FirebaseContext.Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

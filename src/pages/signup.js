@@ -4,13 +4,13 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 // relative imports
-import { firebaseContext } from "../context/forFirebase";
+import { FirebaseContext } from "../context/forFirebase";
 import * as ROUTES from "../routes";
 import { doesUsernameExists } from "../utils/doesUsernameExists";
 
 export default function SignUp() {
   const history = useHistory();
-  const { firebase } = useContext(firebaseContext);
+  const { firebase } = useContext(FirebaseContext);
 
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
@@ -91,12 +91,32 @@ export default function SignUp() {
         <div className="flex flex-col items-center w-2/5 p-4 mb-4 border rounded boder-gray-primary">
           <h1 className="flex justify-center w-full">
             <img
-              src="/images/app-resources/logo.png"
+              src="/images/app-resources/logopro.png"
               alt="logo"
               className="w-6/12 mt-2 mb-4"
             />
           </h1>
-          {error && <p className="mb-4 text-xs text-red-600">!! {error}</p>}
+          {error && (
+            <div className="flex text-center align-items text-red-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <p className="flex mb-2 mr-2 text-xs font-semibold align-middle">
+                {error}
+              </p>
+            </div>
+          )}
 
           <form onSubmit={handleSignUp} method="POST">
             <input

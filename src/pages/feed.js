@@ -6,9 +6,9 @@
 import { useEffect } from "react";
 
 // relative imports
-import { Header } from "../components/header";
-import { SideBar } from "../components/sidebar";
-import { Timeline } from "../components/timeline";
+import Header from "../components/header";
+import SideBar from "../components/sidebar";
+import Timeline from "../components/timeline";
 
 export default function Feed() {
   useEffect(() => {
@@ -16,10 +16,12 @@ export default function Feed() {
   }, []);
 
   return (
-    <div className="bg-gray-background">
+    <div className="container block max-h-screen max-w-screen-2xl bg-gray-background">
       <Header />
-      <Timeline />
-      <SideBar />
+      <div className="grid">
+        <Timeline />
+        <SideBar />
+      </div>
     </div>
   );
 }

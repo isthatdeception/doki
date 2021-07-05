@@ -2,21 +2,27 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fill: (theme) => ({
+      red: theme("colors.red.primary"),
+    }),
     extend: {
       colors: {
         white: "#ffffff",
         blue: {
-          medium: "#47597E",
+          medium: "#005c98",
         },
         black: {
           faded: "#000000",
-          light: "#005c98",
+          light: "#262626",
           hard: "",
         },
         gray: {
-          primary: "#616161",
+          base: "#616161",
           background: "#fafafa",
-          hard: "#dbdbdb",
+          primary: "#dbdbdb",
+        },
+        red: {
+          primary: "#ed4956",
         },
       },
     },
