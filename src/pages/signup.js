@@ -6,33 +6,80 @@ import { Link } from "react-router-dom";
 // relative imports
 import { firebaseContext } from "../context/forFirebase";
 import * as ROUTES from "../routes";
+import { doesUsernameExists } from "../utils/doesUsernameExists";
 
-export default function Login() {
+export default function SignUp() {
   const history = useHistory();
   const { firebase } = useContext(firebaseContext);
 
+  const [username, setUsername] = useState("");
+  const [fullName, setFullName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
-  const isInvalid = password === "" || emailAddress === "";
+  const isInvalid =
+    password === "" ||
+    emailAddress === "" ||
+    fullName === "" ||
+    username === "";
 
-  const handleLogin = async (event) => {
+  /**
+   *
+   * @param {*} event
+   * handling the sign up for the page
+   */
+  const handleSignUp = async (event) => {
     event.preventDefault();
 
-    try {
-      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
-      history.push(ROUTES.FEED);
-    } catch (err) {
-      console.log(err);
-      setEmailAddress("");
-      setPassword("");
-      setError(err.message);
+    const usernameExists = await doesUsernameExists(username);
+
+    /**
+     * does username exists returns back an array if the username exists
+     * so if the username array is empty we will fill it anew by allowing to the username
+     * to the firebase
+     */
+    if (!usernameExists.length) {
+      try {
+        const createdUser = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(emailAddress, password);
+
+        /**
+         * authentication
+         * emailAddress & password & username (display name)
+         */
+        await createdUser.user.updateProfile({
+          displayName: username,
+        });
+
+        // creating a new firebase document for the user
+        await firebase.firestore().collection("users").add({
+          userId: createdUser.user.uid,
+          username: username.toLowerCase(),
+          fullName,
+          emailAddress: emailAddress.toLowerCase(),
+          following: [],
+          dateCreated: Date.now(),
+        });
+
+        history.push(ROUTES.FEED);
+      } catch (err) {
+        console.log(`error occured on handleSignup ${err.message}`);
+
+        setUsername("");
+        setFullName("");
+        setEmailAddress("");
+        setPassword("");
+        setError(err.message);
+      }
+    } else {
+      setError("That username is already taken please try another");
     }
   };
 
   useEffect(() => {
-    document.title = "login-doki";
+    document.title = "signup-doki";
   }, []);
 
   return (
@@ -54,7 +101,25 @@ export default function Login() {
           </h1>
           {error && <p className="mb-4 text-xs text-red-600">!! {error}</p>}
 
-          <form onSubmit={handleLogin} method="POST">
+          <form onSubmit={handleSignUp} method="POST">
+            <input
+              aria-label="Enter your username"
+              type="text"
+              placeholder="Username"
+              className="w-full h-2 px-4 py-5 mb-2 mr-3 text-sm border border-transparent rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-base"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+            />
+
+            <input
+              aria-label="Enter your fullname"
+              type="text"
+              placeholder="Fullname"
+              className="w-full h-2 px-4 py-5 mb-2 mr-3 text-sm border border-transparent rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-base"
+              onChange={(e) => setFullName(e.target.value)}
+              value={fullName}
+            />
+
             <input
               aria-label="Enter your email address"
               type="text"
@@ -80,17 +145,17 @@ export default function Login() {
               }`}
               type="submit"
             >
-              login
+              signup
             </button>
           </form>
           <div className="flex flex-col items-center justify-center w-full p-4 mt-4 bg-white border rounded border-gray-primary ">
             <p className="text-sm font-light text-gray-400">
-              Don't have an account yet?{` `}
+              Already have an account?{` `}
               <Link
-                to={ROUTES.SIGN_UP}
+                to={ROUTES.LOGIN}
                 className="font-semibold text-blue-500 hover:text-blue-700"
               >
-                signup
+                login
               </Link>
             </p>
           </div>
