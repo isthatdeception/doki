@@ -18,11 +18,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
-  const isInvalid =
-    password === "" ||
-    emailAddress === "" ||
-    fullName === "" ||
-    username === "";
+  const isInvalid = password === "" || emailAddress === "";
 
   /**
    *
@@ -33,6 +29,7 @@ export default function SignUp() {
     event.preventDefault();
 
     const usernameExists = await doesUsernameExists(username);
+    // console.log(`usernameExists.length ${usernameExists.length}`);
 
     /**
      * does username exists returns back an array if the username exists

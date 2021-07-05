@@ -3,7 +3,7 @@ import { firebase } from "../lib/firebase";
 /**
  *
  * @param {*} username
- * @returns an array
+ * @returns an boolean array
  */
 export async function doesUsernameExists(username) {
   const result = await firebase
