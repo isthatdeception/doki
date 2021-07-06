@@ -82,6 +82,7 @@ export default function Login() {
               className="w-full h-2 px-4 py-5 mb-2 mr-3 text-sm border border-transparent rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-base"
               onChange={(e) => setEmailAddress(e.target.value)}
               value={emailAddress}
+              autoComplete="email"
             />
 
             <input
@@ -91,6 +92,7 @@ export default function Login() {
               className="w-full h-2 px-4 py-5 mb-2 mr-3 text-sm border border-transparent rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-base"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              autoComplete="current-password"
             />
 
             <button

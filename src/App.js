@@ -16,19 +16,17 @@ export default function App() {
   const { user } = useAuthListener();
 
   return (
-    <div className="container box-border flex">
-      <UserContext.Provider value={{ user }}>
-        <Router>
-          <Suspense fallback={<p>loading ...</p>}>
-            <Switch>
-              <Route exact path={ROUTES.LOGIN} component={Login} />
-              <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
-              <Route path={ROUTES.NOT_FOUND} component={NotFound} />
-              <Route exact path={ROUTES.FEED} component={Feed} />
-            </Switch>
-          </Suspense>
-        </Router>
-      </UserContext.Provider>
-    </div>
+    <UserContext.Provider value={{ user }}>
+      <Router>
+        <Suspense fallback={<p>loading ...</p>}>
+          <Switch>
+            <Route exact path={ROUTES.LOGIN} component={Login} />
+            <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
+            <Route path={ROUTES.NOT_FOUND} component={NotFound} />
+            <Route exact path={ROUTES.FEED} component={Feed} />
+          </Switch>
+        </Suspense>
+      </Router>
+    </UserContext.Provider>
   );
 }

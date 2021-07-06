@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 // relative imports
 import Header from "../components/header";
-import SideBar from "../components/sidebar";
+import SideBar from "../components/sidebar/main";
 import Timeline from "../components/timeline";
 
 export default function Feed() {
@@ -16,9 +16,9 @@ export default function Feed() {
   }, []);
 
   return (
-    <div className="container block max-h-screen max-w-screen-2xl bg-gray-background">
+    <div className="container block max-w-screen-xl max-h-screen bg-gray-background">
       <Header />
-      <div className="grid">
+      <div className="grid justify-between max-w-screen-lg grid-cols-3 gap-4 mx-auto">
         <Timeline />
         <SideBar />
       </div>

@@ -85,8 +85,9 @@ export default function Header() {
                   <Link to={`/p/${user.displayName}`}>
                     <img
                       src={`/images/mock-avatars/${user.displayName}.jpg`}
+                      title="profile"
                       alt={`{user.displayName} profile`}
-                      className="flex w-8 h-6 rounded-full"
+                      className="flex w-12 h-6 rounded-full"
                     />
                   </Link>
                 </div>

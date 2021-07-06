@@ -14,7 +14,7 @@ module.exports = {
         black: {
           faded: "#000000",
           light: "#262626",
-          hard: "",
+          primary: "#151515",
         },
         gray: {
           base: "#616161",
@@ -23,6 +23,12 @@ module.exports = {
         },
         red: {
           primary: "#ed4956",
+        },
+        purple: {
+          primary: "#301B3F",
+        },
+        footer: {
+          primary: "#EDEEF7",
         },
       },
     },

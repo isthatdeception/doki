@@ -14,7 +14,7 @@ import { firebaseConfig } from "../constants/firebaseConfig";
 const firebase = Firebase.initializeApp(firebaseConfig);
 const { fieldValue } = Firebase.firestore();
 
-console.log(`firebase is connected: ${firebase}`);
+// console.log(`firebase is connected: ${firebase}`);
 
 /**
  * seed the database

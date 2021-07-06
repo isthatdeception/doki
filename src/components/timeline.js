@@ -1,3 +1,7 @@
 export default function Timeline() {
-  return <p>i am a timeline component</p>;
+  return (
+    <div className="container col-span-2">
+      <p>I'm still a timeline component</p>
+    </div>
+  );
 }

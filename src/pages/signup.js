@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // relative imports
 import { FirebaseContext } from "../context/forFirebase";
 import * as ROUTES from "../routes";
-import { doesUsernameExists } from "../utils/doesUsernameExists";
+import { doesUsernameExists } from "../services/fromFirebase";
 
 export default function SignUp() {
   const history = useHistory();
