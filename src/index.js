@@ -4,7 +4,7 @@
  * main file for our app
  * static imports
  */
-import "./wdyr";
+// import "./wdyr";
 import React from "react";
 import ReactDOM from "react-dom";
 

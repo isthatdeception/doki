@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 
-const User = ({ username, fullName, test }) =>
+const User = ({ username, fullName }) =>
   !username || !fullName ? (
     <Skeleton count={1} height={61} />
   ) : (
@@ -12,7 +12,6 @@ const User = ({ username, fullName, test }) =>
       className="grid items-center grid-cols-4 gap-4 mb-6"
     >
       <div className="flex items-center justify-between col-span-1">
-        {test}
         <img
           src={`/images/mock-avatars/${username}.jpg`}
           alt="userprofile"

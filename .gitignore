@@ -209,6 +209,9 @@ $RECYCLE.BIN/
 
 docs-examples
 
+mock-avatars/
+mock-users/
+
 # Windows Installer files
 *.cab
 *.msi
