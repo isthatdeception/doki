@@ -13,13 +13,13 @@ dotenv.config();
 
 // relative imports
 import { FirebaseContext } from "./context/forFirebase";
-import { firebase, fieldValue } from "./lib/firebase";
+import { firebase, FieldValue } from "./lib/firebase";
 import App from "./App";
 import "./styles/app.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{ firebase, fieldValue }}>
+    <FirebaseContext.Provider value={{ firebase, FieldValue }}>
       <App />
     </FirebaseContext.Provider>
   </React.StrictMode>,

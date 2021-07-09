@@ -171,6 +171,7 @@ node_modules
 
 *.sublime*
 
+users/
 psd
 thumb
 sketch

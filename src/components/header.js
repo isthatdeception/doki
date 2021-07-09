@@ -84,7 +84,7 @@ export default function Header() {
                 <div className="flex items-center cursor-pointer">
                   <Link to={`/p/${user.displayName}`}>
                     <img
-                      src={`/images/mock-avatars/${user.displayName}.jpg`}
+                      src={`/images/mock-users/${user.displayName}.jpg`}
                       title="profile"
                       alt={`{user.displayName} profile`}
                       className="flex w-12 h-6 rounded-full"

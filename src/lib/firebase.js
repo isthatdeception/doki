@@ -12,7 +12,7 @@ import { firebaseConfig } from "../constants/firebaseConfig";
 // import { seedDatabase } from "../data/seed";
 
 const firebase = Firebase.initializeApp(firebaseConfig);
-const { fieldValue } = Firebase.firestore();
+const { FieldValue } = Firebase.firestore;
 
 // console.log(`firebase is connected: ${firebase}`);
 
@@ -25,4 +25,4 @@ const { fieldValue } = Firebase.firestore();
 // seedDatabase(firebase);
 // console.log(`database just got seeded ${seedDatabase}`);
 
-export { firebase, fieldValue };
+export { firebase, FieldValue };

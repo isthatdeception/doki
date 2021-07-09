@@ -9,13 +9,13 @@ import {
   updateFollowedUserFollowers,
 } from "../../services/fromFirebase";
 
-export default function SuggestedProfile(
+export default function SuggestedProfile({
   profileDocId,
   userId,
   username,
   profileId,
-  loggedInUserDocId
-) {
+  loggedInUserDocId,
+}) {
   /**
    * when a user follow the account
    * the suggested user bar should automatically update the whole bar and remove the user
@@ -32,8 +32,6 @@ export default function SuggestedProfile(
      * update the followers array of the user one followed
      */
 
-    console.log(username);
-
     await updateLoggedInUserFollowing(loggedInUserDocId, profileId, false);
 
     await updateFollowedUserFollowers(profileDocId, userId, false);
@@ -43,13 +41,13 @@ export default function SuggestedProfile(
     <div className="flex flex-row items-center justify-between align-items">
       <div className="flex items-center justify-center">
         <img
-          src={`/images/mock-avatars/${username}.jpg`}
+          src={`/images/mock-avatars/${username}.png`}
           alt={`mock-avatar-of-${username}`}
           className="flex w-8 mr-3 rounded-full"
         />
 
         <Link to={`/p/${username}`}>
-          <p className="text-sm font-bold">{username}</p>
+          <p className="text-sm font-semibold text-gray-800">{username}</p>
         </Link>
       </div>
       <div>

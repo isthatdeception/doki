@@ -32,6 +32,9 @@ export default function Suggestions({ userId, following, loggedInUserDocId }) {
     }
   }, [userId, following]);
 
+  /**
+   * return if no profile skeleton if got profile we will just render it
+   */
   return !profiles ? (
     <Skeleton count={10} height={150} className="mt-5" />
   ) : profiles.length > 0 ? (
@@ -46,8 +49,8 @@ export default function Suggestions({ userId, following, loggedInUserDocId }) {
             profileDocId={profile.docId}
             username={profile.username}
             profileId={profile.userId}
-            userId={profile.userId}
-            loggedInUserDocId={profile.loggedInUserDocId}
+            userId={userId}
+            loggedInUserDocId={loggedInUserDocId}
           />
         ))}
       </div>

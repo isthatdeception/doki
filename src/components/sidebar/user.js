@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 
-const User = ({ username, fullName }) =>
-  !username || !fullName ? (
+export default function User({ username, fullName }) {
+  return !username || !fullName ? (
     <Skeleton count={1} height={61} />
   ) : (
     <Link
@@ -13,7 +13,7 @@ const User = ({ username, fullName }) =>
     >
       <div className="flex items-center justify-between col-span-1">
         <img
-          src={`/images/mock-avatars/${username}.jpg`}
+          src={`/images/mock-users/${username}.jpg`}
           alt="userprofile"
           className="flex w-16 mr-3 rounded-full"
         />
@@ -24,11 +24,10 @@ const User = ({ username, fullName }) =>
       </div>
     </Link>
   );
+}
 /**
  * memo helps with memoization and helps to use rendering when it is acutally needed
  */
-
-export default User;
 
 User.propTypes = {
   username: PropTypes.string,
