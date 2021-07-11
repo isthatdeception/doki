@@ -4,6 +4,9 @@ import Post from "./post/main";
 
 export default function Timeline() {
   const { photos } = usePhotos();
+
+  // console.log(`photos: ${photos}`);
+
   /**
    * we need to get photos of the loggedinuser
    * on loading photos we need to use react-loading-skeleton
@@ -12,7 +15,7 @@ export default function Timeline() {
    * if the user has no photos, tell them to create some photos or explore
    */
   return (
-    <div className="container col-span-2">
+    <div className="container flex-col col-span-2">
       {!photos ? (
         <>
           {[...new Array(4)].map((_, index) => (
@@ -21,7 +24,7 @@ export default function Timeline() {
               count={4}
               width={640}
               height={580}
-              className="mb-4"
+              className="mb-5"
             />
           ))}
         </>

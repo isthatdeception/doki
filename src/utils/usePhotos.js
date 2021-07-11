@@ -18,7 +18,7 @@ export const usePhotos = () => {
       let followedUserPhotos = [];
       // [2, 11, 4]
 
-      console.log(`following: ${following}`);
+      // console.log(`following: ${following}`);
 
       if (following?.length > 0) {
         followedUserPhotos = await getPhotos(userId, following);
