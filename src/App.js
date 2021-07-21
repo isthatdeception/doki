@@ -6,11 +6,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as ROUTES from "./routes";
 import useAuthListener from "./utils/useAuthListener";
 import { UserContext } from "./context/forUser";
+import ProtectedRoute from "./utils/protectedRoute";
+// import IsUserAlreadyLoggedIn from "./utils/isUserAlreadyLoggedIn";
 
 const Login = lazy(() => import("./pages/login"));
 const SignUp = lazy(() => import("./pages/signup"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Feed = lazy(() => import("./pages/feed"));
+const Profile = lazy(() => import("./pages/profile"));
 
 export default function App() {
   const { user } = useAuthListener();
@@ -20,10 +23,31 @@ export default function App() {
       <Router>
         <Suspense fallback={<p>loading ...</p>}>
           <Switch>
-            <Route exact path={ROUTES.LOGIN} component={Login} />
-            <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
+            {/* <IsUserAlreadyLoggedIn
+              user={user}
+              loggedInPath={ROUTES.FEED}
+              path={ROUTES.LOGIN}
+            >
+              <Login />
+            </IsUserAlreadyLoggedIn>
+
+            <IsUserAlreadyLoggedIn
+              user={user}
+              loggedInPath={ROUTES.FEED}
+              path={ROUTES.SIGN_UP}
+            >
+              <SignUp />
+            </IsUserAlreadyLoggedIn> */}
+
+            <Route path={ROUTES.LOGIN} component={Login} />
+            <Route path={ROUTES.SIGN_UP} component={SignUp} />
+
+            <Route path={ROUTES.PROFILE} component={Profile} />
+
             <Route path={ROUTES.NOT_FOUND} component={NotFound} />
-            <Route exact path={ROUTES.FEED} component={Feed} />
+            <ProtectedRoute user={user} path={ROUTES.FEED} exact>
+              <Feed />
+            </ProtectedRoute>
           </Switch>
         </Suspense>
       </Router>

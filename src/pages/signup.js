@@ -22,7 +22,7 @@ export default function SignUp() {
 
   /**
    *
-   * @param {*} event
+   * @param {event} Event
    * handling the sign up for the page
    */
   const handleSignUp = async (event) => {

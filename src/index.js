@@ -1,8 +1,11 @@
 /* eslint-disable import/first */
 
 /**
- * main file for our app
- * static imports
+ *
+ * @author isthatdeception
+ * @description main file for the doki app
+ * @version 1.00
+ *
  */
 // import "./wdyr";
 import React from "react";

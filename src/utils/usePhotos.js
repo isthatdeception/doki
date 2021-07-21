@@ -22,10 +22,9 @@ export const usePhotos = () => {
 
       if (following?.length > 0) {
         followedUserPhotos = await getPhotos(userId, following);
+        followedUserPhotos.sort((a, b) => b.dateCreated - a.dateCreated);
+        setPhotos(followedUserPhotos);
       }
-
-      followedUserPhotos.sort((a, b) => b.dateCreated - a.dateCreated);
-      setPhotos(followedUserPhotos);
     }
 
     getTimelinePhotos();

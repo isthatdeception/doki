@@ -24,7 +24,6 @@ export default function Login() {
       await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
       history.push(ROUTES.FEED);
     } catch (err) {
-      console.log(err);
       setEmailAddress("");
       setPassword("");
       setError(err.message);

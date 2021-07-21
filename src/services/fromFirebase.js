@@ -2,8 +2,8 @@ import { FieldValue, firebase } from "../lib/firebase";
 
 /**
  *
- * @param {*} username
- * @returns an boolean array
+ * @param {string} username
+ * @returns an boolean value of true and false if the user exists
  */
 export async function doesUsernameExists(username) {
   const result = await firebase
@@ -12,14 +12,35 @@ export async function doesUsernameExists(username) {
     .where("username", "==", username)
     .get();
 
-  // console.log(result);
-  return result.docs.length() > 0;
+  return result.docs.length > 0;
 }
 
 /**
  *
- * @param {*} userId
+ * @param {string} username
+ * @returns actual user and if it doesn't, return false
+ *
+ */
+export async function getUserProfileByUsername(username) {
+  const result = await firebase
+    .firestore()
+    .collection("users")
+    .where("username", "==", username)
+    .get();
+
+  const user = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return user;
+}
+
+/**
+ *
+ * @param {string} userId
  * @returns user
+ *
  */
 export async function getUserByUserId(userId) {
   const result = await firebase
@@ -38,9 +59,10 @@ export async function getUserByUserId(userId) {
 
 /**
  *
- * @param {*} userId
- * @param {*} following
+ * @param {string} userId
+ * @param {array<number | []>} following
  * @returns suggested profiles as an array
+ *
  */
 export async function getSuggestedProfiles(userId, following) {
   const result = await firebase.firestore().collection("users").limit(10).get();
@@ -55,9 +77,9 @@ export async function getSuggestedProfiles(userId, following) {
 
 /**
  *
- * @param {*} loggedInUserDocId
- * @param {*} profileId
- * @param {*} isFollowingProfile
+ * @param {string} loggedInUserDocId
+ * @param {string} profileId
+ * @param {boolean} isFollowingProfile
  * @returns an updated array of the following users of the currently logged in user
  */
 export async function updateLoggedInUserFollowing(
@@ -78,9 +100,9 @@ export async function updateLoggedInUserFollowing(
 
 /**
  *
- * @param {*} profileDocId : string
- * @param {*} loggedInUserDocId : string
- * @param {*} isFollowingProfile : boolean
+ * @param {string} profileDocId
+ * @param {string} loggedInUserDocId
+ * @param {boolean} isFollowingProfile
  * @returns an uodated user followers of the currently logged in account
  */
 export async function updateFollowedUserFollowers(
@@ -101,8 +123,8 @@ export async function updateFollowedUserFollowers(
 
 /**
  *
- * @param {*} userId
- * @param {*} following
+ * @param {string} userId
+ * @param {boolean} following
  * @returns photos that are concerned with the logged user aka personalized feed
  */
 export async function getPhotos(userId, following) {
@@ -125,7 +147,6 @@ export async function getPhotos(userId, following) {
       }
 
       const user = await getUserByUserId(photo.userId);
-      // console.log(`user: ${user}`);
 
       const { username } = user[0];
 
@@ -134,4 +155,31 @@ export async function getPhotos(userId, following) {
   );
 
   return photoWithUserDetails;
+}
+
+/**
+ *
+ * @param {string} username
+ * @returns
+ */
+export async function getUserPhotosByUsername(username) {
+  /**
+   * need to write a function that can handle user photos and give back to our app
+   * from firebase
+   * with just username
+   * as they are also unique in our app
+   * @todo need to write this function asap
+   */
+
+  const [user] = await getUserProfileByUsername(username);
+  const result = await firebase
+    .firestore()
+    .collection("photos")
+    .where("userId", "==", user.userId)
+    .get();
+
+  return result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
 }

@@ -24,7 +24,9 @@ export default function Suggestions({ userId, following, loggedInUserDocId }) {
   useEffect(() => {
     async function suggestedProfiles() {
       const response = await getSuggestedProfiles(userId, following);
-      setProfiles(response);
+      if (response) {
+        setProfiles(response);
+      }
     }
 
     if (userId) {

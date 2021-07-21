@@ -47,7 +47,7 @@ export default function Actions({
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            onClick={handleToggleLiked}
+            onClick={() => handleToggleLiked()}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
                 handleToggleLiked();
@@ -67,7 +67,7 @@ export default function Actions({
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            onClick={handleFocus}
+            onClick={() => handleFocus()}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
                 handleFocus();
